@@ -3,6 +3,7 @@ package com.ll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,5 +24,19 @@ public class TestUtillTest {
         assertThat(content).isEqualTo("나의 죽음을 적들에게 알리지 말라!");
         assertThat(authorName).isEqualTo("이순신");
         System.out.println(cmd);
+    }
+    @Test
+    @DisplayName("TestUtil.setOutToByteArray() 테스트")
+    void t2() {
+        ByteArrayOutputStream byteArrayOutputStream = TestUtill.setOutToByteArray();
+
+        System.out.println("2 / 이순신 / 나의 죽음을 적들에게 알리지 말라!");
+
+        String out = byteArrayOutputStream.toString().trim();
+
+        assertThat(out).isEqualTo("2 / 이순신 / 나의 죽음을 적들에게 알리지 말라!");
+
+        TestUtill.clearSetOutToByteArray(byteArrayOutputStream);
+        System.out.println("이제는 화면에 출력됩니다.");
     }
 }
